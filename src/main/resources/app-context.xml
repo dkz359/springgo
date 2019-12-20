@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 通过配置的方式装载bean -->
+    <bean id="helloWorld" class="com.dukz.controller.HelloWorld">
+        <property name="name" value="springgo"></property>
+    </bean>
+
+    <!-- 调用构造方法：通过constructor-arg or c-命名空间 -->
+    <bean id="dukz" class="com.dukz.pojo.Juggler" c:beanBags="20">
+        <!--<constructor-arg value="15"></constructor-arg>-->
+    </bean>
+
+    <bean id="deceivedByLife" class="com.dukz.pojo.DeceivedByLife"/>
+
+    <bean id="poeticDuke" class="com.dukz.pojo.PoeticJuggler">
+        <constructor-arg value="15"/>
+        <constructor-arg ref="deceivedByLife"/>
+    </bean>
+
+    <!--通过factory-method调用工厂类的静态方法-->
+    <bean id="stage" class="com.dukz.pojo.Stage" factory-method="getInstance"></bean>
+
+    <!-- 初始化和销毁时调用方法 -->
+    <!--<bean id="light" class="com.dukz.pojo.Light" init-method="turnOnTheLight" destroy-method="turnOffTheLight"></bean>-->
+
+    <bean id="piano" class="com.dukz.pojo.Piano"></bean>
+
+    <!--通过调用set方法赋值,引用其他的bwan-->
+    <!--<bean id="kenny" class="com.dukz.pojo.Instrumentalist">
+        <property name="song" value="茉莉花"></property>
+        <property name="instrument" ref="piano"></property>
+    </bean>-->
+    <!--通过p命名空间调用set方法赋值,引用其他的bwan-->
+    <bean id="kenny" class="com.dukz.pojo.Instrumentalist" p:song="告白气球" p:instrument-ref="piano"></bean>
+
+    <!--引用内部的bean-->
+    <!--<bean id="kenny" class="com.dukz.pojo.Instrumentalist">
+        <property name="song" value="一剪梅"></property>
+        <property name="instrument">
+            <bean class="com.dukz.pojo.Piano"></bean>
+        </property>
+    </bean>
+-->
+
+</beans>
