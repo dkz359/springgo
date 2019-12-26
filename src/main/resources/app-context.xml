@@ -3,16 +3,24 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:c="http://www.springframework.org/schema/c"
        xmlns:p="http://www.springframework.org/schema/p"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/util
+                           http://www.springframework.org/schema/util/spring-util-4.0.xsd
+                           http://www.springframework.org/schema/context
+    	                   http://www.springframework.org/schema/context/spring-context-3.2.xsd
+                           ">
 
     <!-- 通过配置的方式装载bean -->
-    <bean id="helloWorld" class="com.dukz.controller.HelloWorld">
+    <!--<bean id="helloWorld" class="com.dukz.controller.HelloWorld">
         <property name="name" value="springgo"></property>
     </bean>
 
-    <!-- 调用构造方法：通过constructor-arg or c-命名空间 -->
+    &lt;!&ndash; 调用构造方法：通过constructor-arg or c-命名空间 &ndash;&gt;
     <bean id="dukz" class="com.dukz.pojo.Juggler" c:beanBags="20">
-        <!--<constructor-arg value="15"></constructor-arg>-->
+        &lt;!&ndash;<constructor-arg value="15"></constructor-arg>&ndash;&gt;
     </bean>
 
     <bean id="deceivedByLife" class="com.dukz.pojo.DeceivedByLife"/>
@@ -20,15 +28,15 @@
     <bean id="poeticDuke" class="com.dukz.pojo.PoeticJuggler">
         <constructor-arg value="15"/>
         <constructor-arg ref="deceivedByLife"/>
-    </bean>
+    </bean>-->
 
     <!--通过factory-method调用工厂类的静态方法-->
-    <bean id="stage" class="com.dukz.pojo.Stage" factory-method="getInstance"></bean>
+    <!--<bean id="stage" class="com.dukz.pojo.Stage" factory-method="getInstance"></bean>-->
 
     <!-- 初始化和销毁时调用方法 -->
     <!--<bean id="light" class="com.dukz.pojo.Light" init-method="turnOnTheLight" destroy-method="turnOffTheLight"></bean>-->
 
-    <bean id="piano" class="com.dukz.pojo.Piano"></bean>
+    <!--<bean id="piano" class="com.dukz.pojo.Piano"></bean>-->
 
     <!--通过调用set方法赋值,引用其他的bwan-->
     <!--<bean id="kenny" class="com.dukz.pojo.Instrumentalist">
@@ -36,7 +44,17 @@
         <property name="instrument" ref="piano"></property>
     </bean>-->
     <!--通过p命名空间调用set方法赋值,引用其他的bwan-->
-    <bean id="kenny" class="com.dukz.pojo.Instrumentalist" p:song="告白气球" p:instrument-ref="piano"></bean>
+    <!--<bean id="kenny" class="com.dukz.pojo.Instrumentalist" p:song="告白气球" p:instrument-ref="piano"></bean>-->
+    <!--<bean id="coper" class="com.dukz.pojo.Instrumentalist">
+        <property name="instrument" value="#{kenny.instrument}"/>
+        <property name="song" value="#{kenny.song}"/>
+    </bean>-->
+
+    <!--<bean id="able" class="com.dukz.pojo.Instrumentalist" autowire="byName">
+        <property name="song" value="love is creater"/>
+    </bean>
+
+    <bean id="instrument" class="com.dukz.pojo.Piano" />-->
 
     <!--引用内部的bean-->
     <!--<bean id="kenny" class="com.dukz.pojo.Instrumentalist">
@@ -46,5 +64,29 @@
         </property>
     </bean>
 -->
+
+    <!--<util:list id="cities">
+        <bean class="com.dukz.pojo.City" p:name="Chicago" p:state="IL" p:population="2853114"/>
+        <bean class="com.dukz.pojo.City" p:name="Atlanta"
+              p:state="GA" p:population="537958"/>
+        <bean class="com.dukz.pojo.City" p:name="Dallas"
+              p:state="TX" p:population="1279910"/>
+        <bean class="com.dukz.pojo.City" p:name="Houston"
+              p:state="TX" p:population="2242193"/>
+        <bean class="com.dukz.pojo.City" p:name="Odessa"
+              p:state="TX" p:population="90943"/>
+        <bean class="com.dukz.pojo.City" p:name="El Paso"
+              p:state="TX" p:population="613190"/>
+        <bean class="com.dukz.pojo.City" p:name="Jal"
+              p:state="NM" p:population="1996"/>
+        <bean class="com.dukz.pojo.City" p:name="Las Cruces"
+              p:state="NM" p:population="91865"/>
+    </util:list>
+
+    <bean id="choseCity" class="com.dukz.pojo.ChoseCity">
+        <property name="city" value="#{cities[0]}"/>
+    </bean>-->
+
+    <context:component-scan base-package="com.dukz.pojo"/>
 
 </beans>

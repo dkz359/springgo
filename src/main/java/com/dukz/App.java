@@ -1,6 +1,7 @@
 package com.dukz;
 
 import com.dukz.controller.HelloWorld;
+import com.dukz.pojo.ChoseCity;
 import com.dukz.pojo.Instrumentalist;
 import com.dukz.pojo.Juggler;
 import com.dukz.pojo.Stage;
@@ -28,6 +29,11 @@ public class App {
         Instrumentalist kenny = (Instrumentalist) ioc.getBean("kenny");
         kenny.perform();
 
+//        ChoseCity c = (ChoseCity) ioc.getBean("choseCity");
+//        System.out.println(c.getCity().getName());
+
+//        Instrumentalist able = (Instrumentalist) ioc.getBean("able");
+//        able.perform();
 
         // 关闭容器
         ((ClassPathXmlApplicationContext)ioc).close();

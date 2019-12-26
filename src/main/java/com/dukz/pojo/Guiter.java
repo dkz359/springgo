@@ -3,9 +3,9 @@ package com.dukz.pojo;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Piano implements Instrument {
+public class Guiter implements Instrument {
     @Override
     public void play() {
-        System.out.println("弹奏钢琴。。。");
+        System.out.println("弹奏吉他。。。");
     }
 }
