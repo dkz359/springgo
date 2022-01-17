@@ -87,6 +87,6 @@
         <property name="city" value="#{cities[0]}"/>
     </bean>-->
 
-    <context:component-scan base-package="com.dukz.pojo"/>
+    <!--<context:component-scan base-package="com.dukz.pojo"/>-->
 
 </beans>
