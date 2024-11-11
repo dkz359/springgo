@@ -10,6 +10,10 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  * @Date 2021/11/9
  * @Version 1.0
  */
+public class SpitterWebAppInitializer{
+
+}
+/*
 public class SpitterWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
@@ -26,3 +30,4 @@ public class SpitterWebAppInitializer extends AbstractAnnotationConfigDispatcher
         return new String[]{"/"};
     }
 }
+*/
