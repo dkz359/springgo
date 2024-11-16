@@ -7,17 +7,19 @@ import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     private Map<String, UserDto> userMap = new HashMap<>(2);
     {
-        userMap.put("zhangsan", new UserDto(1001, "zhangsan", "123456", "张三", "13777777777"));
-        userMap.put("lisi", new UserDto(1002, "lisi", "123456", "李四", "13777777777"));
+        Set<String> authorities1 = new HashSet<>();
+        authorities1.add("p1");
+        Set<String> authorities2 = new HashSet<>();
+        authorities2.add("p2");
+        userMap.put("zhangsan", new UserDto(1001, "zhangsan", "123456", "张三", "13777777777", authorities1));
+        userMap.put("lisi", new UserDto(1002, "lisi", "123456", "李四", "13777777777", authorities2));
     }
     @Override
     public UserDto authentication(AuthenticationRequest authenticationRequest) {

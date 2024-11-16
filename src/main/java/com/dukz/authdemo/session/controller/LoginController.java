@@ -31,7 +31,7 @@ public class LoginController {
         return "logout success";
     }
     @GetMapping(value = "/r/r1", produces = "text/plain;charset=utf-8")
-    public String readResource(HttpSession session){
+    public String readResource1(HttpSession session){
         String fullname = "";
         Object obj = session.getAttribute(UserDto.USER_SESSION_KEY);
         if(Objects.isNull(obj)){
@@ -41,6 +41,18 @@ public class LoginController {
             fullname = user.getFullname();
         }
         return fullname + "访问资源r1";
+    }
+    @GetMapping(value = "/r/r2", produces = "text/plain;charset=utf-8")
+    public String readResource2(HttpSession session){
+        String fullname = "";
+        Object obj = session.getAttribute(UserDto.USER_SESSION_KEY);
+        if(Objects.isNull(obj)){
+            fullname = "匿名";
+        }else {
+            UserDto user = (UserDto) obj;
+            fullname = user.getFullname();
+        }
+        return fullname + "访问资源r2";
     }
 
 
