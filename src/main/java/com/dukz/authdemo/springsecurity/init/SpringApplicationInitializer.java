@@ -1,9 +1,10 @@
 /* Copyright (c) 2024, TD SYNNEX Corporation. All rights reserved */
 
-package com.dukz.authdemo.session.init;
+package com.dukz.authdemo.springsecurity.init;
 
-import com.dukz.authdemo.session.config.ApplicationConfig;
-import com.dukz.authdemo.session.config.WebConfig;
+import com.dukz.authdemo.springsecurity.config.ApplicationConfig;
+import com.dukz.authdemo.springsecurity.config.WebConfig;
+import com.dukz.authdemo.springsecurity.config.WebSecurityConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
@@ -14,36 +15,34 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  * @version 1.0
  * @date 2024/11/11
  */
-public class SpringApplicationInitializer
-        // extends AbstractAnnotationConfigDispatcherServletInitializer
-{
+public class SpringApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     /**
      * spring container
      * applicationContext.cml
      * @return
      */
-   /* @Override
+    @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{ApplicationConfig.class};
+        return new Class[]{ApplicationConfig.class, WebSecurityConfig.class};
     }
 
-    *//**
+    /**
      * servlet context
      * springmvc.xml
      * @return
-     *//*
+     */
     @Override
     protected Class<?>[] getServletConfigClasses() {
         return new Class[]{WebConfig.class};
     }
 
-    *//**
+    /**
      * url mapping
      * @return
-     *//*
+     */
     @Override
     protected String[] getServletMappings() {
         return new String[]{"/"};
-    }*/
+    }
 }

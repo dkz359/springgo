@@ -1,15 +1,16 @@
 /* Copyright (c) 2024, TD SYNNEX Corporation. All rights reserved */
 
-package com.dukz.authdemo.session.config;
+package com.dukz.authdemo.springsecurity.config;
 
-import com.dukz.authdemo.session.interceptor.SimpleAuthInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 /**
@@ -20,13 +21,11 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * @version 1.0
  * @date 2024/11/11
  */
-// @Configuration
+@Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.dukz.authdemo.session",
+@ComponentScan(basePackages = "com.dukz.authdemo.springsecurity",
         includeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, value = Controller.class)})
 public class WebConfig implements WebMvcConfigurer {
-    @Autowired
-    private SimpleAuthInterceptor simpleAuthInterceptor;
 
     // config web bean
     // config view resolver
@@ -40,12 +39,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("login");
+        registry.addViewController("/").setViewName("redirect:/login");
         // WebMvcConfigurer.super.addViewControllers(registry);
     }
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(simpleAuthInterceptor).addPathPatterns("/r/**");
-    }
 }
