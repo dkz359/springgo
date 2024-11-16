@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {
+    public static final String USER_SESSION_KEY = "_user";
     private Integer id;
     private String username;
     private String password;
